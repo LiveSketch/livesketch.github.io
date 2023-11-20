@@ -1518,7 +1518,7 @@
             </div>
             <div class="captioned_video">
               <img class="varying_img" src="static/videos/teaser/biking.gif" alt="bike"/>
-              <h6 class="caption">"The biker is pedaling, each leg pumping up and down as the wheels of the bicycle spin rapidly."</h6>
+              <h6 class="caption">""</h6>
             </div>
             <div class="captioned_video">
               <img class="varying_img" src="static/videos/multiprompt/bike/bike_jump.gif" alt="bike"/>
@@ -1669,7 +1669,10 @@
       </div>
     </div>
         <div class="section is-centered has-text-centered">
-          We examine how the specified prompt affects the animation. We first verify that the text itself influences the results in a meaningful way. We apply our method to several example sketches, using two alternative "general prompts": "the object is moving", and an empty prompt. We further examine the impact of modifying the prompt in a way that would motivate the text-to-video to create a sketch. Specifically, we either prepend the string "A sketch of" or append the string "Abstract sketch. Line drawing" to the prompts.
+          We examine how the specified prompt affects the animation. 
+          We first verify that the text itself influences the results in a meaningful way.
+          We apply our method to several example sketches, using alternative textual inputs: "the object is moving", and an empty prompt. 
+          We further examine the impact of modifying the prompt in a way that would motivate the text-to-video to create a sketch. Specifically, we either prepend the string "A sketch of" or append the string "Abstract sketch. Line drawing" to the prompts.
         </div>
       </div>
     </div>
@@ -2015,9 +2018,11 @@
       </div>
     </div>
         <div class="section is center has-text-centered ">
-          As described in the main paper, there is an inherent tradeoff between the components of our method. Here, we demonstrate how this tradeoff can be utilized to provide further user control over the appearance of the output video by adjusting the method's parameters. It is noteworthy that naturally, we observe different effects across various sketches, which may be attributed to the video model's prior or the initial sketch quality.
-          In the third column ("+lr local"), we showcase the impact of increasing the learning rate of the local MLP. As evident, in some cases (biking and butterfly), this results in stronger motion without compromising the sketch's appearance. However, in other cases (cobra and boat), it affects the fidelity of the sketch, leading to a complete alteration of the original sketch.
-          In the fourth column ("+ lr translation"), we increased the translation prediction weight. As observed, this indeed causes the objects to move more across the frame compared to the baseline.
+            We demonstrate the trade-off between the quality of generated motion and the capacity to retain the appearance of the initial sketch. 
+            We show the impact of scaling the local learning rate within the range of 0.01 to 0.0001, keeping all parameters constant except for the local learning rate.
+            Observe that as we move from the left (0.0001) to right (0.1), the motion in the animations increases, better aligning with the text prompt but at the cost of preserving the original sketch's appearance. 
+            This trade-off introduces additional control for the user, who may prioritize stronger motion over sketch fidelity.
+
         </div>
       </div>
     </div>
@@ -2129,7 +2134,7 @@
          
           As described in the main paper, there is an inherent tradeoff between the components of our method. Here, we demonstrate how this tradeoff can be utilized to provide further user control over the appearance of the output video by adjusting the method's parameters. It is noteworthy that naturally, we observe different effects across various sketches, which may be attributed to the video model's prior or the initial sketch quality.
           In the third column ("+lr local"), we showcase the impact of increasing the learning rate of the local MLP. As evident, in some cases (biking and butterfly), this results in stronger motion without compromising the sketch's appearance. However, in other cases (cobra and boat), it affects the fidelity of the sketch, leading to a complete alteration of the original sketch.
-          In the fourth column ("+ lr translation"), we increased the translation prediction weight. As observed, this indeed causes the objects to move more across the frame compared to the baseline.
+          In the fourth column ("+translation"), we increased the translation prediction weight. As observed, this indeed causes the objects to move more across the frame compared to the baseline.
         </div>
       </div>
     </div>
@@ -2293,7 +2298,8 @@
       </div>
     </div>
         <div class="section is-centered has-text-centered">
-          In the main paper we utilized the publicly available ModelScope pretrained video model. In particular, we look at a set of ZeroScope models, tuned across a range of resolutions and framerates (see to https://huggingface.co/cerspense for more details).
+          In the main paper we utilized the publicly available ModelScope pretrained video model. 
+          In particular, we look at a set of ZeroScope models, tuned across a range of resolutions and framerates (see <a href=https://huggingface.co/cerspense  target="_blank">https://huggingface.co/cerspense</a> for more details).
           As observed, our method succesfully generalizes to these models with no additional changes.
           Note that different models do lead to different motion patterns, and some of them may result in different tradeoffs between the level of motion and the ability to preserve the sketch. For example, zeroscope-v1-320s (third column) resulted in slower motions, while zeroscope-v2-576w (sixth row) produces more "jumpy" videos.    
 
@@ -2510,7 +2516,6 @@
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
-          <p>If you want an image removed from this page or have other requests, please contact us at <a href="tuningencoder@gmail.com">tuningencoder@gmail.com</a></p>
           <p>
             Website content is licensed under a <a rel="license"
                                                 href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative
