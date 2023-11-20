@@ -8,20 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Breathing Life Into Sketches Using Text-to-Video Priors</title>
 
-<!--&lt;!&ndash;   Global site tag (gtag.js) - Google Analytics&ndash;&gt;-->
-<!--  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QVM9XP0Q0C"></script>-->
-<!--  <script>-->
-<!--    window.dataLayer = window.dataLayer || [];-->
-
-<!--    function gtag() {-->
-<!--      dataLayer.push(arguments);-->
-<!--    }-->
-
-<!--    gtag('js', new Date());-->
-
-<!--    gtag('config', 'G-QVM9XP0Q0C');-->
-<!--  </script>-->
-
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
@@ -89,7 +75,7 @@
               </span>
 
               <span class="link-block">
-                <a href="https://github.com/yael-vinker/CLIPSketch" target="_blank"
+                <a href="https://github.com/yael-vinker/LiveSketch" target="_blank"
                 class="external-link button is-normal is-rounded">
                 <span class="icon">
                   <i class="fab fa-github"></i>
@@ -100,6 +86,7 @@
            
             </div>
           </div>
+
 
           <div class="columns is-centered has-text-centered is-variable is-8">
           <div class="column is-three-quarters is-centered has-text-centered">
@@ -127,9 +114,25 @@
             </span>
 
             <span class="link-block">
+              <a href="#text_prompt_effect"
+                 class="nav-link button-55 is-normal">
+                <span>Text Prompt Effect</span>
+                </a>
+            </span>
+
+            
+
+            <span class="link-block">
               <a href="#abstraction"
                   class="nav-link button-55 is-normal">
                 <span>Abstraction Levels</span>
+                </a>
+            </span>
+
+            <span class="link-block">
+              <a href="#sketch_representation"
+                  class="nav-link button-55 is-normal">
+                <span>Sketch Representation</span>
                 </a>
             </span>
 
@@ -181,24 +184,18 @@
 
 <!--Video-->
 <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      
-      <!-- Abstract. -->
-      <!-- <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths"> -->
-          <!-- <h2 class="subtitle">
-            TL;DR: We bring abstract sketches to life using a score distillation sampling (SDS) loss </h2><br> -->
-          <div class="item">
-            <p style="margin-bottom: 30px">
-          <video poster="" id="tree" autoplay controls muted loop height="100%">
-            <source src="static/videos/main_video/video_sketch_new.mp4"
-            type="video/mp4">
-          </video>
-          
-          </p>
-        </div>
-    </div>
-  </section>
+  <div class="container is-max-desktop">
+        <div class="item">
+          <p style="margin-bottom: 30px">
+        <video poster="" id="tree" autoplay controls muted loop height="100%">
+          <source src="static/videos/main_video/video_sketch_new.mp4"
+          type="video/mp4">
+        </video>
+        
+        </p>
+      </div>
+  </div>
+</section>
 
 <!-- Abstract. -->
 <section class="section">
@@ -231,29 +228,29 @@
   <div class="columns is-centered has-text-centered">
     <div class="column is-two-fifths has-text-centered">
       <h2 class="title is-3">Representation</h2>
-      <img id="rep" src="static/images/method/representation.png"/>
+      <img id="rep" src="static/images/method/representation1.png"/>
       <div class="content has-text-justified">
         We represent a sketch as a set of strokes placed over a white background. Each stroke is a two dimensional Bézier curve (blue) with four control points (red). Our method predicts an offset for each point (green) for every frame. These offsets deform the sketch in order to create the appearance of motion.
       </div>
     </div>
     <div class="column is-four-fifths has-text-centered">
         <h2 class="title is-3">Network</h2>
-        <img id="network" src="static/images/method/pipe_global_local.png"/>
+        <img id="network" src="static/images/method/pipe_global_local2.png"/>
         <div class="content has-text-justified">
-              To predict the offsets we train a "neural displacement field", a small MLP that maps the initial sketch coordinates into their per-frame offsets.
-              The network has two paths: A local path (green) which predicts an unconstrained offset for each point, and a global path (blue) which predicts the parameters of a global affine transformation matrix for each frame.
-              This allows the model to focus on small local changes (e.g., bending an arm) while simultaneously creating large global movements or synchronized effects such as shrinking an object as it moves away from the camera.
+            To predict the offsets we train a "neural displacement field", a small MLP that maps the initial sketch coordinates into their per-frame offsets.
+            The network has two paths: A local path (green) which predicts an unconstrained offset for each point, and a global path (blue) which predicts the parameters of a global affine transformation matrix for each frame.
+            This allows the model to focus on small local changes (e.g., bending an arm) while simultaneously creating large global movements or synchronized effects such as shrinking an object as it moves away from the camera.
         </div>
     </div>
     <div class="column is-two-fifths has-text-centered">
         <h2 class="title is-3">Training</h2>
-        <img id="pipe" src="static/images/method/pipeline_high_level2.png"/>
+        <img id="pipe" src="static/images/method/pipeline_high_level1.png"/>
           <div class="content has-text-justified">
               To train this network, we leverage the motion prior encapsulated in a pre-trained text-to-video model. We begin by predicting the offset for each control point, adjusting the sketch to create all video frames, and rendering them using a differentiable rasterizer.
               We then use the standard SDS loss in order to extract a signal from the pre-trained diffusion model.
           </div>
     </div>
-  </div>
+    
 </div>
 </section>
 
@@ -261,16 +258,17 @@
 <section class="section">
   <div class="container is-widescreen" id="gallery">
     <div class="link-block ">
-        <a href="#top"
-            class="nav-link button-55 is-normal">
-          <span>Go to Top</span>
-          </a>
-      </div>
-      <div class="section-title has-text-centered is-centered">
-        <h2 class="title is-3">Gallery</h2><br>
-      </div>
+      <a href="#top"
+          class="nav-link button-55 is-normal">
+        <span>Go to Top</span>
+        </a>
+    </div>
+    <div class="section-title has-text-centered is-centered">
+      <h2 class="title is-3">Gallery</h2><br>
+    </div>
     <div class="container is-max-desktop is-centered has-text-centered">
       <div class="gallery">
+        
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/dolphin_2_input.gif" alt="dolphin_2"/>
@@ -294,8 +292,6 @@
           </div>
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The cat is playing." title="">The cat is playing. [..]</h6>
         </div>
-        
-        
         
         <div class="captioned_video">
           <div class="inner_gallery">
@@ -353,7 +349,6 @@
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The lizard moves with a sinuous, undulating motion, gliding smoothly over surfaces using its agile limbs and tail for balance and propulsion." title="">The lizard moves with a sinuou [..]</h6>
         </div>
         
-        
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/squirrel_input.gif" alt="squirrel"/>
@@ -394,7 +389,6 @@
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A gazelle galloping and jumping to escape predators." title="">A gazelle galloping and jumpin [..]</h6>
         </div>
         
-        
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/squirrel1_input.gif" alt="squirrel1"/>
@@ -411,8 +405,6 @@
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The cat is playing." title="">The cat is playing. [..]</h6>
         </div>
         
-        
-        
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/eagle_input.gif" alt="eagle"/>
@@ -420,7 +412,6 @@
           </div>
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The eagle soars majestically, with powerful wing beats and effortless glides." title="">The eagle soars majestically,  [..]</h6>
         </div>
-        
         
         <div class="captioned_video">
           <div class="inner_gallery">
@@ -430,7 +421,6 @@
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A parachute descending slowly and gracefully after being deployed." title="">A parachute descending slowly  [..]</h6>
         </div>
         
-        
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/flower_a1_input.gif" alt="flower_a1"/>
@@ -438,9 +428,6 @@
           </div>
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The flower is moving and growing, swaying gently from side to side." title="">The flower is moving and growi [..]</h6>
         </div>
-        
-        
-       
         
         <div class="captioned_video">
           <div class="inner_gallery">
@@ -450,7 +437,6 @@
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A butterfly fluttering its wings and flying gracefully." title="">A butterfly fluttering its win [..]</h6>
         </div>
         
-        
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/gazelle_3_input.gif" alt="gazelle_3"/>
@@ -458,7 +444,6 @@
           </div>
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A gazelle galloping and jumping to escape predators." title="">A gazelle galloping and jumpin [..]</h6>
         </div>
-        
         
         <div class="captioned_video">
           <div class="inner_gallery">
@@ -468,7 +453,6 @@
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The spaceship accelerates rapidly during takeoff, utilizing powerful rocket engines." title="">The spaceship accelerates rapi [..]</h6>
         </div>
         
-        
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/cat3_input.gif" alt="cat3"/>
@@ -476,9 +460,6 @@
           </div>
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The cat is playing." title="">The cat is playing. [..]</h6>
         </div>
-        
-        
-        
         
         <div class="captioned_video">
           <div class="inner_gallery">
@@ -488,7 +469,6 @@
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The ballerina is dancing." title="">The ballerina is dancing. [..]</h6>
         </div>
         
-        
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/ceiling_fan_input.gif" alt="ceiling_fan"/>
@@ -497,41 +477,13 @@
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A ceiling fan rotating blades to circulate air in a room." title="">A ceiling fan rotating blades  [..]</h6>
         </div>
 
-        <!-- <div class="captioned_video">
-          <div class="inner_gallery">
-            <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/squirrel_3_input.gif" alt="squirrel_3"/>
-            <img class="gallery_img under grid_r_1 grid_c_1" src="static/videos/teaser/squirrel_3.gif" alt="squirrel_3"/>
-          </div>
-          <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The squirrel uses its dexterous front paws to hold and manipulate nuts, displaying meticulous and deliberate motions while eating." title="">The squirrel uses its dexterou [..]</h6>
-        </div>
-         -->
-        
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/clock_a1_input.gif" alt="clock_a1"/>
             <img class="gallery_img under grid_r_1 grid_c_1" src="static/videos/teaser/clock_a1.gif" alt="clock_a1"/>
           </div>
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A clock hands ticking and rotating to indicate time." title="">A clock hands ticking and rota [..]</h6>
-        </div>
-        
-        
-        <!-- <div class="captioned_video">
-          <div class="inner_gallery">
-            <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/clock_a2_input.gif" alt="clock_a2"/>
-            <img class="gallery_img under grid_r_1 grid_c_1" src="static/videos/teaser/clock_a2.gif" alt="clock_a2"/>
-          </div>
-          <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A clock hands ticking and rotating to indicate time." title="">A clock hands ticking and rota [..]</h6>
-        </div>
-         -->
-        
-        <!-- <div class="captioned_video">
-          <div class="inner_gallery">
-            <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/artist_3_input.gif" alt="artist_3"/>
-            <img class="gallery_img under grid_r_1 grid_c_1" src="static/videos/teaser/artist_3.gif" alt="artist_3"/>
-          </div>
-          <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A martial artist executing precise and controlled movements in different forms of martial arts." title="">A martial artist executing pre [..]</h6>
-        </div> -->
-        
+        </div>        
         
         <div class="captioned_video">
           <div class="inner_gallery">
@@ -558,11 +510,7 @@
           </div>
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The jazz saxophonist performs on stage with a rhythmic sway, his upper body sways subtly to the rhythm of the music." title="">The jazz saxophonist performs  [..]</h6>
         </div>
-        
-        
-        
-        
-        
+    
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/horse_input.gif" alt="horse"/>
@@ -570,7 +518,6 @@
           </div>
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A galloping horse." title="">A galloping horse. [..]</h6>
         </div>
-        
         
         <div class="captioned_video">
           <div class="inner_gallery">
@@ -597,17 +544,6 @@
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A basketball player dribbling and passing while playing basketball." title="">A basketball player dribbling  [..]</h6>
         </div>
         
-        
-        <!-- <div class="captioned_video">
-          <div class="inner_gallery">
-            <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/windmill_3_input.gif" alt="windmill_3"/>
-            <img class="gallery_img under grid_r_1 grid_c_1" src="static/videos/teaser/windmill_3.gif" alt="windmill_3"/>
-          </div>
-          <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A windmill spinning its blades in the wind to generate energy." title="">A windmill spinning its blades [..]</h6>
-        </div> -->
-        
-        
-        
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/biking_input.gif" alt="biking"/>
@@ -615,9 +551,6 @@
           </div>
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The biker is pedaling, each leg pumping up and down as the wheels of the bicycle spin rapidly, propelling them forward." title="">The biker is pedaling, each le [..]</h6>
         </div>
-        
-        
-        
         
         <div class="captioned_video">
           <div class="inner_gallery">
@@ -627,7 +560,6 @@
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A waving flag fluttering and rippling in the wind." title="">A waving flag fluttering and r [..]</h6>
         </div>
         
-        
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/boat2_input.gif" alt="boat2"/>
@@ -635,11 +567,7 @@
           </div>
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The man sailing the boat, his hands deftly manipulate the oars, while his body shifts subtly to maintain balance, while his boat moves foraward in the river." title="">The man sailing the boat, his  [..]</h6>
         </div>
-        
-        
-        
-        
-        
+
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/snake3_input.gif" alt="snake3"/>
@@ -648,7 +576,6 @@
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The hypnotized cobra snake sways rhythmically, mesmerized, with a gentle and trance-like side-to-side motion, its hood slightly flared, under the influence of an entrancing stimulus." title="">The hypnotized cobra snake swa [..]</h6>
         </div>
         
-        
         <div class="captioned_video">
           <div class="inner_gallery">
             <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/ballet1_input.gif" alt="ballet1"/>
@@ -656,10 +583,6 @@
           </div>
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The ballerina is dancing." title="">The ballerina is dancing. [..]</h6>
         </div>
-        
-        
-        
-        
 
         <div class="captioned_video">
           <div class="inner_gallery">
@@ -669,40 +592,28 @@
           <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="The airplane moves swiftly and steadily through the air." title="">The airplane moves swiftly and [..]</h6>
         </div>
 
+        <div class="captioned_video">
+            <div class="inner_gallery">
+                <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/camel.gif" alt="bike"/>
+                <img class="gallery_img under grid_r_1 grid_c_1" src="static/videos/teaser/camel.gif" alt="bike"/>
+            </div>
+            <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A camel is walking" title="">A camel is walking</h6>
+        </div>
 
-
-
-
-
-          <div class="captioned_video">
-              <div class="inner_gallery">
-                  <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/camel.gif" alt="bike"/>
-                  <img class="gallery_img under grid_r_1 grid_c_1" src="static/videos/teaser/camel.gif" alt="bike"/>
-              </div>
-              <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="A camel is walking" title="">A camel is walking</h6>
-          </div>
-
-          <div class="captioned_video">
-              <div class="inner_gallery">
-                    <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/yoga.gif" alt="bike"/>
-                    <img class="gallery_img under grid_r_1 grid_c_1" src="static/videos/teaser/yoga.gif" alt="bike"/>
-              </div>
-              <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="&#34;The woman gracefully flowed through her yoga routine, moving from one pose to another with fluid and controlled motion&#34;" title="">&#34;[...] flowed through her yoga routine [...]&#34;</h6>
-          </div>
-
-
-        
-
-          </div>
-        <br>
-    <br>
+        <div class="captioned_video">
+            <div class="inner_gallery">
+                  <img class="gallery_img over grid_r_1 grid_c_1" src="static/images/teaser/yoga.gif" alt="bike"/>
+                  <img class="gallery_img under grid_r_1 grid_c_1" src="static/videos/teaser/yoga.gif" alt="bike"/>
+            </div>
+            <h6 class="caption has-tooltip-multiline has-tooltip-bottom" data-tooltip="&#34;The woman gracefully flowed through her yoga routine, moving from one pose to another with fluid and controlled motion&#34;" title="">&#34;[...] flowed through her yoga routine [...]&#34;</h6>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 </section>
 
-
 <!-- Comparisons -->
-<section class="section">
+<section class="section hero is-light">
   <div class="container is-widescreen" id="comparisons">
     <div class="link-block ">
       <a href="#top"
@@ -1535,7 +1446,7 @@
 </section>
 
 <!-- Varying the Prompts -->
-<section class="section hero is-light">
+<section class="section">
   <div class="container is-widescreen" id="varying">
     <div class="link-block ">
       <a href="#top"
@@ -1550,56 +1461,86 @@
     <div class="columns is-centered has-text-centered is-variable is-8">
       <div class="column is-two-fifths is-centered">
           <div class="prompt_gallery">
-
             <div class="captioned_video">
-                <img class="varying_img" src="static/images/teaser/boxer.gif" alt="bike"/>
-                <h6 class="caption">Input</h6>
+              <img class="varying_img" src="static/images/teaser/boxer.gif" alt="bike"/>
+              <h6 class="caption">Input</h6>
             </div>
             <div class="captioned_video">
-                <img class="varying_img" src="static/videos/multiprompt/boxer/running.gif" alt="bike"/>
-                <h6 class="caption">"The boxer is running."</h6>
+              <img class="varying_img" src="static/videos/multiprompt/boxer/running.gif" alt="bike"/>
+              <h6 class="caption">"The boxer is running."</h6>
             </div>
             <div class="captioned_video">
-                <img class="varying_img" src="static/videos/multiprompt/boxer/jumping.gif" alt="bike"/>
-                <h6 class="caption">"The boxer is jumping."</h6>
+              <img class="varying_img" src="static/videos/multiprompt/boxer/jumping.gif" alt="bike"/>
+              <h6 class="caption">"The boxer is jumping."</h6>
             </div>
             <div class="captioned_video">
               <img class="varying_img" src="static/videos/multiprompt/boxer/punching.gif" alt="bike"/>
               <h6 class="caption">"The boxer is punching."</h6>
             </div>
+
             <div class="captioned_video">
-                <img class="varying_img" src="static/images/teaser/wine.gif" alt="bike"/>
-                <h6 class="caption">Input</h6>
+              <img class="varying_img" src="static/videos/multiprompt/gazelle2/gazelle2_inputs.gif" alt="bike"/>
+              <h6 class="caption">Input</h6>
             </div>
             <div class="captioned_video">
-                <img class="varying_img" src="static/videos/teaser/wine1.gif" alt="bike"/>
-                <h6 class="caption">"??????"</h6>
+              <img class="varying_img" src="static/videos/multiprompt/gazelle2/gazelle_multiprompt2.gif" alt="bike"/>
+              <h6 class="caption">"The gazelle galloped through the grass."</h6>
+            </div>
+            <div class="captioned_video">
+              <img class="varying_img" src="static/videos/multiprompt/gazelle2/gazelle_multiprompt1.gif" alt="bike"/>
+              <h6 class="caption">"The gazelle looks around."</h6>
+            </div>
+            <div class="captioned_video">
+              <img class="varying_img" src="static/videos/multiprompt/gazelle2/gazelle_jumps.gif" alt="bike"/>
+              <h6 class="caption">"The gazelle jumps."</h6>
+            </div>
+
+            <div class="captioned_video">
+              <img class="varying_img" src="static/images/teaser/cat2_16_input.gif" alt="bike"/>
+              <h6 class="caption">Input</h6>
+            </div>
+            <div class="captioned_video">
+              <img class="varying_img" src="static/videos/teaser/cat.gif" alt="bike"/>
+              <h6 class="caption">"The cat is playing."</h6>
+            </div>
+            <div class="captioned_video">
+              <img class="varying_img" src="static/videos/multiprompt/cat/cat_curl_1.gif" alt="bike"/>
+              <h6 class="caption">"The cat is curled up."</h6>
+            </div>
+            <div class="captioned_video">
+              <img class="varying_img" src="static/videos/multiprompt/cat/cat_walks.gif" alt="bike"/>
+              <h6 class="caption">"The cat walks forward."</h6>
+            </div>
+
+            <div class="captioned_video">
+              <img class="varying_img" src="static/images/teaser/biking_input.gif" alt="bike"/>
+              <h6 class="caption">Input</h6>
+            </div>
+            <div class="captioned_video">
+              <img class="varying_img" src="static/videos/teaser/biking.gif" alt="bike"/>
+              <h6 class="caption">""</h6>
+            </div>
+            <div class="captioned_video">
+              <img class="varying_img" src="static/videos/multiprompt/bike/bike_jump.gif" alt="bike"/>
+              <h6 class="caption">"The bicycle rider jumps over an obstacle."</h6>
+            </div>
+            <div class="captioned_video">
+              <img class="varying_img" src="static/videos/multiprompt/bike/bike_turn.gif" alt="bike"/>
+              <h6 class="caption">"The bicycle rider makes a turn at high speed."</h6>
+            </div>
+
+            <div class="captioned_video">
+              <img class="varying_img" src="static/images/teaser/wine.gif" alt="bike"/>
+              <h6 class="caption">Input</h6>
             </div>
             <div class="captioned_video">
               <img class="varying_img" src="static/videos/teaser/wine1.gif" alt="bike"/>
               <h6 class="caption">"The wine in the wine glass sways from side to side."</h6>
-          </div>
-            
-              <div class="captioned_video">
-                <img class="varying_img" src="static/videos/multiprompt/wine/fill.gif" alt="bike"/>
-                <h6 class="caption">"The glass is being filled with wine."</h6>
             </div>
-            <div class="captioned_video">
-              <img class="varying_img" src="static/videos/multiprompt/gazelle2/gazelle2_inputs.gif" alt="bike"/>
-              <h6 class="caption">Input</h6>
-          </div>
-          <div class="captioned_video">
-              <img class="varying_img" src="static/videos/multiprompt/gazelle2/gazelle_multiprompt2.gif" alt="bike"/>
-              <h6 class="caption">"the gazelle galloped through the grass"</h6>
-          </div>
-          <div class="captioned_video">
-            <img class="varying_img" src="static/videos/multiprompt/gazelle2/gazelle_multiprompt1.gif" alt="bike"/>
-            <h6 class="caption">"the gazelle looks around"</h6>
-        </div>
             <div class="captioned_video">
               <img class="varying_img" src="static/videos/multiprompt/wine/fill.gif" alt="bike"/>
               <h6 class="caption">"The glass is being filled with wine."</h6>
-          </div>
+            </div>
           </div>
       </div>
     </div>
@@ -1609,6 +1550,130 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- Text prompt effect -->
+<section class="section hero is-light">
+  <div class="container is-widescreen" id="text_prompt_effect">
+    <div class="link-block ">
+      <a href="#top"
+          class="nav-link button-55 is-normal">
+        <span>Go to Top</span>
+        </a>
+    </div>
+    <div id="tradeoff">
+      <div class="section-title has-text-centered is-centered">
+        <h2 class="title is-3">Text Prompt Effect</h2><br>
+      </div>
+
+      <div class="columns is-centered has-text-centered is-variable is-8">
+        <div class="column is-three-quarters is-centered">
+          <div class="textprompt_gallery">
+          <div class="captioned_video">
+            <h6 class="caption">Input Sketch</h6>
+          </div>       
+          <div class="captioned_video">
+            <h6 class="caption">Baseline</h6>
+          </div>
+          <div class="captioned_video">
+            <h6 class="caption">General Prompts</h6>
+          </div>
+          <div class="captioned_video">
+            <h6 class="caption">Empty Prompt</h6>
+          </div>
+          <div class="captioned_video">
+            <h6 class="caption">+"A sketch of .."</h6>
+          </div>    
+          <div class="captioned_video">
+            <h6 class="caption">+"Abstract sketch. Line drawing"</h6>
+          </div>   
+          <div class="captioned_video">
+            <img class="tradeoff_src_img" src="static/images/teaser/dancers3_input.gif" alt="bike"/>
+          </div>       
+          <div class="captioned_video">
+            <img class="tradeoff_src_img" src="static/videos/teaser/dancers3.gif" alt="bike"/>
+          </div>
+          <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/text_prompt/generic_dancers3.gif" alt="bike"/>
+          </div>
+          <div class="captioned_video">
+            <img class="tradeoff_src_img" src="static/videos/text_prompt/empty_dancers3.gif" alt="bike"/>
+          </div>
+          <div class="captioned_video">
+            <img class="tradeoff_src_img" src="static/videos/text_prompt/prepend_dancers3.gif" alt="bike"/>
+          </div>    
+          <div class="captioned_video">
+            <img class="tradeoff_src_img" src="static/videos/text_prompt/append_dancers3.gif" alt="bike"/>
+          </div>      
+
+        
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/images/teaser/penguin_input.gif" alt="bike"/>
+        </div>       
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/videos/teaser/penguin.gif" alt="bike"/>
+        </div>
+        <div class="captioned_video">
+            <img class="tradeoff_src_img" src="static/videos/text_prompt/generic_penguin.gif" alt="bike"/>
+        </div>
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/videos/text_prompt/empty_penguin.gif" alt="bike"/>
+        </div>
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/videos/text_prompt/prepend_penguin.gif" alt="bike"/>
+        </div>    
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/videos/text_prompt/append_penguin.gif" alt="bike"/>
+        </div>  
+
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/images/teaser/dolphin_3_input.gif" alt="bike"/>
+        </div>       
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/videos/teaser/dolphin_3.gif" alt="bike"/>
+        </div>
+        <div class="captioned_video">
+            <img class="tradeoff_src_img" src="static/videos/text_prompt/generic_dolphin_3.gif" alt="bike"/>
+        </div>
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/videos/text_prompt/empty_dolphin_3.gif" alt="bike"/>
+        </div>
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/videos/text_prompt/prepend_dolphin_3.gif" alt="bike"/>
+        </div>    
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/videos/text_prompt/append_dolphin_3.gif" alt="bike"/>
+        </div>  
+
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/images/teaser/parachute_input.gif" alt="bike"/>
+        </div>       
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/videos/teaser/parachute.gif" alt="bike"/>
+        </div>
+        <div class="captioned_video">
+            <img class="tradeoff_src_img" src="static/videos/text_prompt/generic_parachute_2.gif" alt="bike"/>
+        </div>
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/videos/text_prompt/empty_parachute_2.gif" alt="bike"/>
+        </div>
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/videos/text_prompt/prepend_parachute_2.gif" alt="bike"/>
+        </div>    
+        <div class="captioned_video">
+          <img class="tradeoff_src_img" src="static/videos/text_prompt/append_parachute_2.gif" alt="bike"/>
+        </div>  
+
+        </div>
+      </div>
+    </div>
+        <div class="section is-centered has-text-centered">
+          We examine how the specified prompt affects the animation. We first verify that the text itself influences the results in a meaningful way. We apply our method to several example sketches, using two alternative "general prompts": "the object is moving", and an empty prompt. We further examine the impact of modifying the prompt in a way that would motivate the text-to-video to create a sketch. Specifically, we either prepend the string "A sketch of" or append the string "Abstract sketch. Line drawing" to the prompts.
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 </section>
 
@@ -1655,19 +1720,19 @@
               <img class="tradeoff_src_img" src="static/videos/abstraction/horse_new2_16_input.gif" alt="bike"/>
             </div>  
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/abstraction/horse_new2_16_noaug.gif" alt="bike"/>
+                <img class="tradeoff_src_img" src="static/videos/abstraction/horse_new2_16.gif" alt="bike"/>
             </div> 
           <div class="captioned_video">
               <img class="tradeoff_src_img" src="static/videos/abstraction/horse_new2_8_input.gif" alt="bike"/>
           </div>          
           <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/abstraction/horse_new2_8_noaug.gif" alt="bike"/>
+              <img class="tradeoff_src_img" src="static/videos/abstraction/horse_new2_8.gif" alt="bike"/>
           </div>
           <div class="captioned_video">
             <img class="tradeoff_src_img" src="static/videos/abstraction/horse_new2_4_input.gif" alt="bike"/>
           </div>
           <div class="captioned_video">
-            <img class="tradeoff_src_img" src="static/videos/abstraction/horse_new2_4_noaug.gif" alt="bike"/>
+            <img class="tradeoff_src_img" src="static/videos/abstraction/horse_new2_4.gif" alt="bike"/>
           </div>
           </div>
 
@@ -1703,12 +1768,96 @@
       </div>
     </div>
   </div>
-    <!--/ Abstract. -->
+  </div>
+</section>
+
+<!-- Sketch representation -->
+<section class="section hero is-light">
+  <div class="container is-widescreen" id="sketch_representation">
+    <div class="link-block ">
+      <a href="#top" class="nav-link button-55 is-normal">
+        <span>Go to Top</span>
+      </a>
+    </div>
+    <div id="tradeoff">
+      <div class="section-title has-text-centered is-centered">
+        <h2 class="title is-3">Sketch Representation</h2><br>
+      </div>
+
+      <div class="columns is-centered has-text-centered is-variable is-8">
+        <div class="column is-two-fifths is-centered has_border_right">
+          <div class="comp_gallery">
+            <div class="captioned_video">
+              <h6 class="caption">Input</h6>
+            </div>
+            <div class="captioned_video">
+              <h6 class="caption">Baseline</h6>
+            </div>
+            <div class="captioned_video">
+              <h6 class="caption">-lr local</h6>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/sketch_rep/horse_tuberlin_input.gif" alt="bike"/>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/sketch_rep/horse_lr_local0.005_global0.0001.gif" alt="bike"/>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/sketch_rep/horse_lr_local0.002_global0.0001.gif" alt="bike"/>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/sketch_rep/fish_tuberlin_input.gif" alt="bike"/>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/sketch_rep/fish_lr_local0.005_global0.0001.gif" alt="bike"/>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/sketch_rep/fish_lr_local0.002_global0.0001.gif" alt="bike"/>
+            </div>  
+          </div>
+        </div>
+        <div class="column is-two-fifths is-centered has_border_left">
+          <div class="comp_gallery">
+            <div class="captioned_video">
+              <h6 class="caption">Input</h6>
+            </div>
+            <div class="captioned_video">
+              <h6 class="caption">Baseline</h6>
+            </div>
+            <div class="captioned_video">
+              <h6 class="caption">-lr local</h6>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/sketch_rep/shark_tuberlin_input.gif" alt="bike"/>
+            </div> 
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/sketch_rep/shark_lr_local0.005_global0.0001.gif" alt="bike"/>
+            </div>          
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/sketch_rep/shark_lr_local0.002_global0.0001.gif" alt="bike"/>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/sketch_rep/spider_tuberlin_input.gif" alt="bike"/>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/sketch_rep/spider_lr_local0.005_global0.0001.gif" alt="bike"/>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/sketch_rep/spider_lr_local0.002_global0.0001.gif" alt="bike"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section is-centered has-text-centered">
+        We illustrate the impact of changing the sketch representation. We applied our method to sketches from the <a href="https://cybertron.cg.tu-berlin.de/eitz/projects/classifysketch/" target="_blank">TU-Berlin sketch dataset</a>, a human-drawn class-based sketch dataset. We showcase the results of four representative sketches. Our method was directly applied to the provided SVG files.
+        As can be seen, our method successfully animated the sketches, however their appearance is not fully preserved when using the default hyperparameters. This can be improved by using lower learning rates.
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- Trade-off -->
-<section class="section hero is-light">
+<section class="section">
   <div class="container is-widescreen" id="trade-off">
     <div class="link-block ">
       <a href="#top"
@@ -1722,7 +1871,7 @@
       </div>
 
       <div class="columns is-centered has-text-centered is-variable is-8">
-        <div class="column is-one-fifths is-centered">
+        <div class="column is-three-quarters is-centered">
           <div class="tradeoff2_gallery">
 
             <div class="captioned_video">
@@ -1743,183 +1892,141 @@
           <div class="captioned_video">
             <h6 class="caption">0.01</h6>
         </div>
-        <div class="captioned_video">
-          <h6 class="caption">0.05</h6>
-      </div>
-      <div class="captioned_video">
-        <h6 class="caption">0.1</h6>
-    </div>
 
             <div class="captioned_video">
               <img class="tradeoff_src_img" src="static/images/teaser/ballerina2_input.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff2/ballerina/ballerina2_seed1000_lr_local0.0001.gif" alt="ballerina"/>
+                <img class="tradeoff_src_img" src="static/videos/tradeoff/ballerina/ballerina2_lr_local0.0001.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/ballerina/ballerina2_seed1000_lr_local0.0005.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/ballerina/ballerina2_lr_local0.0005.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/ballerina/ballerina2_seed1000_lr_local0.001.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/ballerina/ballerina2_lr_local0.001.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/ballerina/ballerina2_seed1000_lr_local0.005.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/ballerina/ballerina2_lr_local0.005.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/ballerina/ballerina2_seed1000_lr_local0.01.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/ballerina/ballerina2_seed1000_lr_local0.05.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/ballerina/ballerina2_seed1000_lr_local0.1.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/ballerina/ballerina2_lr_local0.01.gif" alt="ballerina"/>
             </div>
 
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/images/teaser/ballerina2_input.gif" alt="bike"/>
-            </div>
-            <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff2/fish/fish_seed1000_lr_local0.0001.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/fish/fish_seed1000_lr_local0.0005.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/fish/fish_seed1000_lr_local0.001.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/fish/fish_seed1000_lr_local0.005.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/fish/fish_seed1000_lr_local0.01.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/fish/fish_seed1000_lr_local0.05.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/fish/fish_seed1000_lr_local0.1.gif" alt="ballerina"/>
-            </div>
 
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/images/teaser/ballerina2_input.gif" alt="bike"/>
+              <img class="tradeoff_src_img" src="static/images/teaser/fish_input.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff2/squirrel/squirrel_2_seed1000_lr_local0.0001.gif" alt="ballerina"/>
+                <img class="tradeoff_src_img" src="static/videos/tradeoff/fish/fish_lr_local0.0001.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/squirrel/squirrel_2_seed1000_lr_local0.0005.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/fish/fish_lr_local0.0005.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/squirrel/squirrel_2_seed1000_lr_local0.001.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/fish/fish_lr_local0.001.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/squirrel/squirrel_2_seed1000_lr_local0.005.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/fish/fish_lr_local0.005.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/squirrel/squirrel_2_seed1000_lr_local0.01.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/squirrel/squirrel_2_seed1000_lr_local0.05.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/squirrel/squirrel_2_seed1000_lr_local0.1.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/fish/fish_lr_local0.01.gif" alt="ballerina"/>
             </div>
 
+
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/images/teaser/ballerina2_input.gif" alt="bike"/>
+              <img class="tradeoff_src_img" src="static/images/teaser/squirrel_input.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff2/crab/crabdraw_seed1000_lr_local0.0001.gif" alt="ballerina"/>
+                <img class="tradeoff_src_img" src="static/videos/tradeoff/squirrel/squirrel_2_lr_local0.0001.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/crab/crabdraw_seed1000_lr_local0.0005.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/squirrel/squirrel_2_lr_local0.0005.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/crab/crabdraw_seed1000_lr_local0.001.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/squirrel/squirrel_2_lr_local0.001.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/crab/crabdraw_seed1000_lr_local0.005.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/squirrel/squirrel_2_lr_local0.005.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/crab/crabdraw_seed1000_lr_local0.01.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/crab/crabdraw_seed1000_lr_local0.05.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/crab/crabdraw_seed1000_lr_local0.1.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/squirrel/squirrel_2_lr_local0.01.gif" alt="ballerina"/>
             </div>
 
+
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/images/teaser/crabdraw_input.gif" alt="bike"/>
+            </div>
+            <div class="captioned_video">
+                <img class="tradeoff_src_img" src="static/videos/tradeoff/crab/crabdraw_lr_local0.0001.gif" alt="ballerina"/>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/crab/crabdraw_lr_local0.0005.gif" alt="ballerina"/>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/crab/crabdraw_lr_local0.001.gif" alt="ballerina"/>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/crab/crabdraw_lr_local0.005.gif" alt="ballerina"/>
+            </div>
+            <div class="captioned_video">
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/crab/crabdraw_lr_local0.01.gif" alt="ballerina"/>
+            </div>
+            
             <div class="captioned_video">
               <img class="tradeoff_src_img" src="static/images/teaser/flag_3_input.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff2/flag/flag_3_seed1000_lr_local0.0001.gif" alt="ballerina"/>
+                <img class="tradeoff_src_img" src="static/videos/tradeoff/flag/flag_3_lr_local0.0001.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/flag/flag_3_seed1000_lr_local0.0005.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/flag/flag_3_lr_local0.0005.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/flag/flag_3_seed1000_lr_local0.001.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/flag/flag_3_lr_local0.001.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/flag/flag_3_seed1000_lr_local0.005.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/flag/flag_3_lr_local0.005.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/flag/flag_3_seed1000_lr_local0.01.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/flag/flag_3_seed1000_lr_local0.05.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2/flag/flag_3_seed1000_lr_local0.1.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff/flag/flag_3_lr_local0.01.gif" alt="ballerina"/>
             </div>
 
             <div class="captioned_video">
               <img class="tradeoff_src_img" src="static/images/teaser/sax_play1_input.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff2/sax/sax_play1_seed1000_lr_local0.0001.gif" alt="ballerina"/>
+                <img class="tradeoff_src_img" src="static/videos/tradeoff/sax/sax_play1_lr_local0.0001.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2//sax/sax_play1_seed1000_lr_local0.0005.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff//sax/sax_play1_lr_local0.0005.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2//sax/sax_play1_seed1000_lr_local0.001.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff//sax/sax_play1_lr_local0.001.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2//sax/sax_play1_seed1000_lr_local0.005.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff//sax/sax_play1_lr_local0.005.gif" alt="ballerina"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2//sax/sax_play1_seed1000_lr_local0.01.gif" alt="ballerina"/>
+              <img class="tradeoff_src_img" src="static/videos/tradeoff//sax/sax_play1_lr_local0.01.gif" alt="ballerina"/>
             </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2//sax/sax_play1_seed1000_lr_local0.05.gif" alt="ballerina"/>
-            </div>
-            <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff2//sax/sax_play1_seed1000_lr_local0.1.gif" alt="ballerina"/>
-            </div>
+     
 
           </div>
       </div>
     </div>
-    <!-- <div class="column is-three-fifths is-centered"> -->
         <div class="section is center has-text-centered ">
-         
           As described in the main paper, there is an inherent tradeoff between the components of our method. Here, we demonstrate how this tradeoff can be utilized to provide further user control over the appearance of the output video by adjusting the method's parameters. It is noteworthy that naturally, we observe different effects across various sketches, which may be attributed to the video model's prior or the initial sketch quality.
           In the third column ("+lr local"), we showcase the impact of increasing the learning rate of the local MLP. As evident, in some cases (biking and butterfly), this results in stronger motion without compromising the sketch's appearance. However, in other cases (cobra and boat), it affects the fidelity of the sketch, leading to a complete alteration of the original sketch.
           In the fourth column ("+ lr translation"), we increased the translation prediction weight. As observed, this indeed causes the objects to move more across the frame compared to the baseline.
         </div>
-        <!-- </div> -->
       </div>
     </div>
   </div>
-    <!--/ Abstract. -->
   </div>
 </section>
 
 <!-- Hyperparams Effect -->
-<section class="section">
+<section class="section hero is-light">
   <div class="container is-widescreen" id="hyperparameters">
     <div class="link-block ">
       <a href="#top"
@@ -1956,85 +2063,82 @@
               <img class="tradeoff_src_img" src="static/images/teaser/snake3_input.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff/snake/baseline.gif" alt="bike"/>
+                <img class="tradeoff_src_img" src="static/videos/hyperparameters/snake/baseline.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff/snake/lr_local+.gif" alt="bike"/>
+                <img class="tradeoff_src_img" src="static/videos/hyperparameters/snake/lr_local+.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff/snake/translation.gif" alt="bike"/>
+                <img class="tradeoff_src_img" src="static/videos/hyperparameters/snake/translation.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff/snake/scale.gif" alt="bike"/>
+                <img class="tradeoff_src_img" src="static/videos/hyperparameters/snake/scale.gif" alt="bike"/>
             </div>
 
             <div class="captioned_video">
               <img class="tradeoff_src_img" src="static/images/teaser/butterfly_3_input.gif" alt="boat"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff/butterfly/baseline.gif" alt="boat"/>
+              <img class="tradeoff_src_img" src="static/videos/hyperparameters/butterfly/baseline.gif" alt="boat"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff/butterfly/lr_local++.gif" alt="boat"/>
+              <img class="tradeoff_src_img" src="static/videos/hyperparameters/butterfly/lr_local+.gif" alt="boat"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff/butterfly/translation.gif" alt="boat"/>
+              <img class="tradeoff_src_img" src="static/videos/hyperparameters/butterfly/translation.gif" alt="boat"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff/butterfly/scale.gif" alt="boat"/>
+              <img class="tradeoff_src_img" src="static/videos/hyperparameters/butterfly/scale.gif" alt="boat"/>
             </div>
 
             <div class="captioned_video">
                 <img class="tradeoff_src_img" src="static/images/teaser/biking_input.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff/bike/baseline.gif" alt="bike"/>
+                <img class="tradeoff_src_img" src="static/videos/hyperparameters/bike/baseline.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff/bike/lr_local++.gif" alt="bike"/>
+                <img class="tradeoff_src_img" src="static/videos/hyperparameters/bike/lr_local+.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff/bike/translation.gif" alt="bike"/>
+                <img class="tradeoff_src_img" src="static/videos/hyperparameters/bike/translation.gif" alt="bike"/>
             </div>
             <div class="captioned_video">
-                <img class="tradeoff_src_img" src="static/videos/tradeoff/bike/scale.gif" alt="bike"/>
+                <img class="tradeoff_src_img" src="static/videos/hyperparameters/bike/scale.gif" alt="bike"/>
             </div>
 
             <div class="captioned_video">
               <img class="tradeoff_src_img" src="static/images/teaser/boat2_input.gif" alt="boat"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff/boat/baseline.gif" alt="boat"/>
+              <img class="tradeoff_src_img" src="static/videos/hyperparameters/boat/baseline.gif" alt="boat"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff/boat/lr_local++.gif" alt="boat"/>
+              <img class="tradeoff_src_img" src="static/videos/hyperparameters/boat/lr_local+.gif" alt="boat"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff/boat/translation.gif" alt="boat"/>
+              <img class="tradeoff_src_img" src="static/videos/hyperparameters/boat/translation.gif" alt="boat"/>
             </div>
             <div class="captioned_video">
-              <img class="tradeoff_src_img" src="static/videos/tradeoff/boat/scale.gif" alt="boat"/>
+              <img class="tradeoff_src_img" src="static/videos/hyperparameters/boat/scale.gif" alt="boat"/>
             </div>
           </div>
       </div>
     </div>
-    <!-- <div class="column is-three-fifths is-centered"> -->
         <div class="section is center has-text-centered ">
          
           As described in the main paper, there is an inherent tradeoff between the components of our method. Here, we demonstrate how this tradeoff can be utilized to provide further user control over the appearance of the output video by adjusting the method's parameters. It is noteworthy that naturally, we observe different effects across various sketches, which may be attributed to the video model's prior or the initial sketch quality.
           In the third column ("+lr local"), we showcase the impact of increasing the learning rate of the local MLP. As evident, in some cases (biking and butterfly), this results in stronger motion without compromising the sketch's appearance. However, in other cases (cobra and boat), it affects the fidelity of the sketch, leading to a complete alteration of the original sketch.
           In the fourth column ("+ lr translation"), we increased the translation prediction weight. As observed, this indeed causes the objects to move more across the frame compared to the baseline.
         </div>
-        <!-- </div> -->
       </div>
     </div>
   </div>
-    <!--/ Abstract. -->
   </div>
 </section>
 
 <!-- Comparing Video Models -->
-<section class="section hero is-light">
+<section class="section">
   <div class="container is-widescreen" id="vidmodel">
     <div class="link-block ">
       <a href="#top"
@@ -2188,7 +2292,6 @@
           </div>
       </div>
     </div>
-    <!-- </div> -->
         <div class="section is-centered has-text-centered">
           In the main paper we utilized the publicly available ModelScope pretrained video model. In particular, we look at a set of ZeroScope models, tuned across a range of resolutions and framerates (see to https://huggingface.co/cerspense for more details).
           As observed, our method succesfully generalizes to these models with no additional changes.
@@ -2201,7 +2304,7 @@
 </section>
 
 <!-- Ablation -->
-<section class="section">
+<section class="section hero is-light">
   <div class="container is-widescreen" id="ablation">
     <div class="link-block ">
       <a href="#top"
@@ -2212,7 +2315,6 @@
       <div class="section-title has-text-centered is-centered">
         <h2 class="title is-3">Ablation</h2><br>
       </div>
-      <!-- <div id="results-carousel" class="carousel results-carousel"> -->
         <div class="columns is-centered has-text-centered is-variable is-8">
           <div class="column is-three-quarters is-centered">
             <div class="ablation_gallery">
@@ -2228,12 +2330,9 @@
               <div class="captioned_video">
                 <img class="gallery_img" src="static/videos/ablation/no_global0.01/crabdraw.gif" alt="no_global0.01_crabdraw"/>
               </div>
-          
-              <!-- <div class="captioned_video">
-                <img class="gallery_img" src="static/videos/ablation/nonet/crabdraw.gif" alt="nonet_crabdraw"/>
-              </div> -->
+
               <div class="captioned_video">
-                <img class="gallery_img" src="static/videos/ablation/nonet2/crabdraw.gif" alt="nonet_crabdraw"/>
+                <img class="gallery_img" src="static/videos/ablation/nonet/crabdraw.gif" alt="nonet_crabdraw"/>
               </div>
           
               <div class="captioned_video">
@@ -2251,13 +2350,9 @@
               <div class="captioned_video">
                 <img class="gallery_img" src="static/videos/ablation/no_global0.01/fish.gif" alt="no_global0.01_fish"/>
               </div>
-<!--             
-              <div class="captioned_video">
-                <img class="gallery_img" src="static/videos/ablation/nonet/fish.gif" alt="nonet_fish"/>
-              </div> -->
 
               <div class="captioned_video">
-                <img class="gallery_img" src="static/videos/ablation/nonet2/fish.gif" alt="nonet_fish"/>
+                <img class="gallery_img" src="static/videos/ablation/nonet/fish.gif" alt="nonet_fish"/>
               </div>
       
               <div class="captioned_video">
@@ -2283,9 +2378,6 @@
           </div>
         </div>
 
-
-
-    <!-- </div> -->
       <div class="caption is-centered has-text-centered">
         We evaluate the main components of our method: (1) Disabling the local path -> severely restricts the model's ability to capture natural motion, leading to wobbling and sliding effects rather abstract motion that fits the sketch.
         (2) Disabling the global path -> leads to highly-localized motion with no movement across the frame or globally synchronized effects such as shrinking when moving away from the frame.
@@ -2293,16 +2385,10 @@
             
             
          </div>
-        <!-- <div class="section is-centered has-text-centered">
-         /div> -->
-  
-  <!-- </div> -->
-  <!-- </div>
-  </div> -->
 </section>
 
 <!-- Limitations -->
-<section class="section hero is-light" id="limitations">
+<section class="section" id="limitations">
   
   <div class="container is-widescreen">
     <div class="link-block ">
@@ -2313,24 +2399,9 @@
     </div>
 
       <div class="section-title has-text-centered is-centered">
-        
         <h2 class="title is-3">Limitations</h2>
-        
-       
-          <!-- <div class="link-block ">
-          <a href="#gallery"
-              class="nav-link button-55 is-normal">
-            <span>Go to Top</span>
-            </a>
-        </div> -->
         <br>
     <div class="columns is-centered has-text-centered is-variable is-8">
-      <!-- <h2 class="title is-4">Sketch Representation</h2>
-        <h1 class="text" text-align="left">
-          We build upon the sketch representation introduced in previous research, however, there exist many ways to represent sketches in vector format, including different types of curves or primitive shapes (such as lines or polygons), different attributes for the shapes (such as stroke's width, closed shapes, and more), and with different number of parameters.
-          Our selection of hyperparameters and network design is based on one specific sketch representation. Addressing the diversity of vector sketches necessitates further development work.
-        </h1>
-    </div> -->
       <div class="column is-two-thirds is-centered">
         <h2 class="title is-4">Sketch Representation</h2>
         <div class="content has-text-justified">
@@ -2341,7 +2412,6 @@
           As can be seen, the sketch resulting translation is significanly increased compared to our common results. In addition, the surfer's apperance is not well preserved as its' scale changed significantly.
           </p>
         </div>
-        <!-- <div class="limitation_gallery column is-two-fifths is-centered"></div> -->
           <div class="limitation_gallery">
             <div class="captioned_video">
               <img class="limitation_src_img" src="static/images/teaser/surfer.gif" alt="bike"/>
@@ -2421,26 +2491,10 @@
           </div>
       </div>
     </div>
-        <!-- <div class="section is-centered has-text-centered">
-          Our model is limited by several aspects. First, the range of motion we can portray is limited to small movements which are within the diffusion model's ability to create. Second, our approach displays a trade-off between shape preservation and the expressiveness of motion that it can generate. This trade-off can be controlled by our hyperparameters, but in many cases a user may struggle to find a pleasing working point on the trade-off curve.
-        Our approach focuses on a specific sketch representation, and may require tuning to adapt to representations based on different primitives or with vastly different properties (closed contours, thin stroke widths).
-        Lastly, our method is designed with a single subject in mind, and may perform poorly when provided with multiple characters or an entire scene. We leave the treatment of these limitations to future work.
-         </div> -->
       </div>
     </div>
   </div>
 </section>
-
-
-
-<!--<section class="section" id="BibTeX">-->
-<!--  <div class="container is-max-desktop content">-->
-<!--    <h2 class="title">BibTeX</h2>-->
-<!--    <p>If you find our work useful, please cite our paper:</p>-->
-<!--    <pre><code>Coming soon-->
-<!--}</code></pre>-->
-<!--  </div>-->
-<!--</section>-->
 
 <footer class="footer">
   <div class="container">
@@ -2471,12 +2525,5 @@
     </div>
   </div>
 </footer>
-
-<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
-<!--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>-->
-<!--    <script src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/js/webflow.fd002feec.js"></script>-->
-<!--    <script src="https://polyfill.io/v3/polyfill.js?features=IntersectionObserver"></script>-->
-<!--    <script src="https://ajayj.com/vectorfusion/assets/js/yall.js"></script>-->
-
 </body>
 </html>
