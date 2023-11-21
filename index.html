@@ -202,7 +202,7 @@
           type="video/mp4">
 
         </video>
-        <h6 class="caption is-centered has-text-centered">We reccomend watching the video with sound on</h6>
+        <h6 class="caption">We recommend watching the video with sound on</h6>
         </p>
       </div>
   </div>
@@ -1468,7 +1468,7 @@
       <div class="section-title has-text-centered is-centered">
         <h2 class="title is-3">Varying the Prompts</h2>
                 <br>
-        </div>
+      </div>
     <div class="columns is-centered has-text-centered is-variable is-8">
       <div class="column is-two-fifths is-centered">
           <div class="prompt_gallery">
@@ -1555,12 +1555,59 @@
           </div>
       </div>
     </div>
-        <div class="section is-centered has-text-centered">
-          Our method is based on signals from pre-trained text-to-video models. As such, it offers a degree of control over the generated results by simply modifying the prompts that describe the movement.
-            These changes are limited to small motions that the model can create, and that align with the semantics of the initial sketch. Hence, we can fill a glass with wine or ask a boxer to jump, but we may struggle to make the same boxer perform a back-flip.
-        </div>
-      </div>
+    <div class="section is-centered has-text-centered">
+        Our method is based on signals from pre-trained text-to-video models. As such, it offers a degree of control over the generated results by simply modifying the prompts that describe the movement.
+        These changes are limited to small motions that the model can create, and that align with the semantics of the initial sketch. Hence, we can fill a glass with wine or ask a boxer to jump, but we may struggle to make the same boxer perform a back-flip.
     </div>
+
+    <div class="section-title has-text-centered is-centered">
+        <h2 class="title is-3">Fail Case Analysis</h2>
+                <br>
+      </div>
+    <div class="columns is-centered has-text-centered is-variable is-8">
+        <div class="column is-three-fifths is-centered">
+            <div class="prompt_gallery">
+                <div class="captioned_video">
+                    <h6 class="caption">Input</h6>
+                </div>
+                <div class="captioned_video">
+                    <h6 class="caption">"The ballerina is dancing."</h6>
+                  </div>
+                  <div class="captioned_video">
+                    <h6 class="caption">"The ballerina performed a grand jete."</h6>
+                  </div>
+                  <div class="captioned_video">
+                    <h6 class="caption">"The ballerina bowed."</h6>
+                </div>
+                
+                <div class="captioned_video">
+                    <img class="varying_img" src="static/images/teaser/ballerina2_input.gif" alt="bike"/>
+                  </div>
+                <div class="captioned_video">
+                    <img class="varying_img" src="static/videos/teaser/ballerina2.gif" alt="bike"/>
+                  </div>
+                  <div class="captioned_video">
+                    <img class="varying_img" src="static/videos/multiprompt/fail_case/sketch_grand_jete.gif" alt="bike"/>
+                  </div>
+                  <div class="captioned_video">
+                    <img class="varying_img" src="static/videos/multiprompt/fail_case/sketch_ballerina_bow.gif" alt="bike"/>
+                </div>
+                <div class="captioned_video">
+                    <h6 class="varying_img"><br><br><br><br>Prompt-only</h6>
+                </div>
+              <div class="captioned_video">
+                <img class="varying_img" src="static/videos/multiprompt/fail_case/dancing.gif" alt="bike"/>
+              </div>
+              <div class="captioned_video">
+                <img class="varying_img" src="static/videos/multiprompt/fail_case/grand_jete.gif" alt="bike"/>
+              </div>
+              <div class="captioned_video">
+                <img class="varying_img" src="static/videos/multiprompt/fail_case/bowed.gif" alt="bike"/>
+            </div>
+            
+        </div>
+    </div>
+              
   </div>
 </section>
 
