@@ -75,7 +75,7 @@
               </span>
 
               <span class="link-block">
-                <a href="https://github.com/yael-vinker/LiveSketch" target="_blank"
+                <a href="https://github.com/yael-vinker/live_sketch" target="_blank"
                 class="external-link button is-normal is-rounded">
                 <span class="icon">
                   <i class="fab fa-github"></i>
@@ -185,11 +185,14 @@
 <!--Video-->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
+    <h6 class="caption"><sup>*</sup>Video with sound</h6><br>
         <div class="item">
           <p style="margin-bottom: 30px">
         <video poster="" id="tree" autoplay controls muted loop height="100%">
           <source src="static/videos/main_video/video_sketch_new.mp4"
           type="video/mp4">
+          
+
         </video>
         
         </p>
@@ -1518,7 +1521,7 @@
             </div>
             <div class="captioned_video">
               <img class="varying_img" src="static/videos/teaser/biking.gif" alt="bike"/>
-              <h6 class="caption">""</h6>
+              <h6 class="caption">"The biker is pedaling, each leg pumping up and down."</h6>
             </div>
             <div class="captioned_video">
               <img class="varying_img" src="static/videos/multiprompt/bike/bike_jump.gif" alt="bike"/>
@@ -1671,8 +1674,9 @@
         <div class="section is-centered has-text-centered">
           We examine how the specified prompt affects the animation. 
           We first verify that the text itself influences the results in a meaningful way.
-          We apply our method to several example sketches, using alternative textual inputs: "the object is moving", and an empty prompt. 
-          We further examine the impact of modifying the prompt in a way that would motivate the text-to-video to create a sketch. Specifically, we either prepend the string "A sketch of" or append the string "Abstract sketch. Line drawing" to the prompts.
+          To do so, we apply our method to several example sketches, using two alternatives:  A "generic prompt" ("the object is moving"), and the empty prompt (""). 
+          We further examine the impact of modifying the prompt in a way that would motivate the text-to-video to create a sketch. 
+          Specifically, we either prepend the string "A sketch of" or append the string "Abstract sketch. Line drawing" to the prompts.
         </div>
       </div>
     </div>
