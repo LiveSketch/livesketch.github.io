@@ -623,3 +623,7 @@ body {
       You can instead use position:absolute or display:inline-block
       if this fits better with your design */
   }
+
+#network {
+    height: 100%;
+}
