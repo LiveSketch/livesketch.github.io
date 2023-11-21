@@ -229,41 +229,6 @@
     </div>
   </div>
 </section>
-  
-<!-- How does it work? -->
-<section class="section hero is-light">
-<div class="container is-max-desktop">
-  <div class="section-title has-text-centered is-centered">
-    <h2 class="title is-3">How does it work?</h2><br>
-  </div>
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-two-fifths has-text-centered">
-      <h2 class="title is-3">Representation</h2>
-      <img id="rep" src="static/images/method/representation1.png"/>
-      <div class="content has-text-justified">
-        We represent a sketch as a set of strokes placed over a white background. Each stroke is a two dimensional Bézier curve (blue) with four control points (red). Our method predicts an offset for each point (green) for every frame. These offsets deform the sketch in order to create the appearance of motion.
-      </div>
-    </div>
-    <div class="column is-four-fifths has-text-centered">
-        <h2 class="title is-3">Network</h2>
-        <img id="network" src="static/images/method/pipe_global_local2.png"/>
-        <div class="content has-text-justified">
-            To predict the offsets we train a "neural displacement field", a small MLP that maps the initial sketch coordinates into their per-frame offsets.
-            The network has two paths: A local path (green) which predicts an unconstrained offset for each point, and a global path (blue) which predicts the parameters of a global affine transformation matrix for each frame.
-            This allows the model to focus on small local changes (e.g., bending an arm) while simultaneously creating large global movements or synchronized effects such as shrinking an object as it moves away from the camera.
-        </div>
-    </div>
-    <div class="column is-two-fifths has-text-centered">
-        <h2 class="title is-3">Training</h2>
-        <img id="pipe" src="static/images/method/pipeline_high_level1.png"/>
-          <div class="content has-text-justified">
-              To train this network, we leverage the motion prior encapsulated in a pre-trained text-to-video model. We begin by predicting the offset for each control point, adjusting the sketch to create all video frames, and rendering them using a differentiable rasterizer.
-              We then use the standard SDS loss in order to extract a signal from the pre-trained diffusion model.
-          </div>
-    </div>
-    
-</div>
-</section>
 
 <!--Gallery-->
 <section class="section">
@@ -623,6 +588,41 @@
   </div>
 </section>
 
+<!-- How does it work? -->
+<section class="section hero is-light">
+<div class="container is-max-desktop">
+  <div class="section-title has-text-centered is-centered">
+    <h2 class="title is-3">How does it work?</h2><br>
+  </div>
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-two-fifths has-text-centered">
+      <h2 class="title is-3">Representation</h2>
+      <img id="rep" src="static/images/method/representation1.png"/>
+      <div class="content has-text-justified">
+        We represent a sketch as a set of strokes placed over a white background. Each stroke is a two dimensional Bézier curve (blue) with four control points (red). Our method predicts an offset for each point (green) for every frame. These offsets deform the sketch in order to create the appearance of motion.
+      </div>
+    </div>
+    <div class="column is-four-fifths has-text-centered">
+        <h2 class="title is-3">Network</h2>
+        <img id="network" src="static/images/method/pipe_global_local2.png"/>
+        <div class="content has-text-justified">
+            To predict the offsets we train a "neural displacement field", a small MLP that maps the initial sketch coordinates into their per-frame offsets.
+            The network has two paths: A local path (green) which predicts an unconstrained offset for each point, and a global path (blue) which predicts the parameters of a global affine transformation matrix for each frame.
+            This allows the model to focus on small local changes (e.g., bending an arm) while simultaneously creating large global movements or synchronized effects such as shrinking an object as it moves away from the camera.
+        </div>
+    </div>
+    <div class="column is-two-fifths has-text-centered">
+        <h2 class="title is-3">Training</h2>
+        <img id="pipe" src="static/images/method/pipeline_high_level1.png"/>
+          <div class="content has-text-justified">
+              To train this network, we leverage the motion prior encapsulated in a pre-trained text-to-video model. We begin by predicting the offset for each control point, adjusting the sketch to create all video frames, and rendering them using a differentiable rasterizer.
+              We then use the standard SDS loss in order to extract a signal from the pre-trained diffusion model.
+          </div>
+    </div>
+    
+</div>
+</section>
+  
 <!-- Comparisons -->
 <section class="section hero is-light">
   <div class="container is-widescreen" id="comparisons">
